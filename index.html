@@ -29,56 +29,165 @@
                   line-height: 1.8;
             }
 
+            :root {
+                  --dark-blue: #2d3436;
+                  --lime-green: #00ddeb;
+                  --white: #ffffff;
+            }
+
             .container {
                   max-width: 1300px;
                   padding: 30px;
                   margin-top: 80px;
+                  margin-left: auto;
+                  margin-right: auto;
             }
 
             header {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  background: rgba(255, 255, 255, 0.95);
+                  backdrop-filter: blur(10px);
+                  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                  z-index: 1000;
+                  padding: 15px 40px;
                   display: flex;
                   justify-content: space-between;
                   align-items: center;
-                  padding: 20px 40px;
-                  background: linear-gradient(135deg, #ffffff 0%, #f8f9fd 100%);
-                  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-                  border-radius: 20px;
-                  margin-bottom: 40px;
-                  position: relative;
-                  overflow: hidden;
+                  transition: background 0.3s ease;
+            }
+
+            header.scrolled {
+                  background: rgba(255, 255, 255, 0.98);
+                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             }
 
             header .logo {
-                  font-size: 32px;
+                  font-size: 28px;
                   font-weight: 700;
                   background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
                   -webkit-background-clip: text;
                   -webkit-text-fill-color: transparent;
+                  letter-spacing: 1px;
                   position: relative;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+            }
+
+            header .logo::before {
+                  content: '';
+                  width: 40px;
+                  height: 40px;
+                  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="url(%23logo-gradient)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>');
+                  background-size: contain;
+                  display: inline-block;
+            }
+
+            header nav ul {
+                  list-style: none;
+                  display: flex;
+                  gap: 30px;
+                  align-items: center;
+            }
+
+            header nav ul li a {
+                  color: #2d3436;
+                  text-decoration: none;
+                  font-size: 16px;
+                  font-weight: 500;
+                  position: relative;
+                  padding: 5px 0;
+                  transition: color 0.3s ease;
+            }
+
+            header nav ul li a::after {
+                  content: '';
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  width: 0;
+                  height: 2px;
+                  background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
+                  transition: width 0.3s ease;
+            }
+
+            header nav ul li a:hover::after {
+                  width: 100%;
+            }
+
+            header nav ul li a:hover {
+                  color: #6b48ff;
+            }
+
+            header .phone a {
+                  background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
+                  color: #ffffff;
+                  padding: 10px 20px;
+                  border-radius: 25px;
+                  font-size: 14px;
+                  font-weight: 600;
+                  text-decoration: none;
+                  transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            header .phone a:hover {
+                  transform: translateY(-2px);
+                  box-shadow: 0 5px 15px rgba(107, 72, 255, 0.3);
             }
 
             .hero {
+                  position: relative;
                   background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
                   color: white;
-                  padding: 80px 60px;
+                  padding: 100px 60px;
                   border-radius: 30px;
                   text-align: center;
                   margin-bottom: 50px;
-                  position: relative;
                   overflow: hidden;
-                  box-shadow: 0 20px 40px rgba(107, 72, 255, 0.15);
+                  box-shadow: 0 20px 40px rgba(107, 72, 255, 0.2);
+                  z-index: 1;
+                  background-image: url('https://i.pinimg.com/1200x/2a/5c/3e/2a5c3e63e46553ca988aebc1b99af9e2.jpg');
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-size: cover;
             }
 
             .hero::before {
+                  content: '';
+                  position: absolute;
+                  top: -50%;
+                  left: -50%;
+                  width: 200%;
+                  height: 200%;
+                  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+                  animation: rotateBg 15s linear infinite;
+                  z-index: -1;
+            }
+
+            @keyframes rotateBg {
+                  0% {
+                        transform: rotate(0deg);
+                  }
+
+                  100% {
+                        transform: rotate(360deg);
+                  }
+            }
+
+             .hero::before {
                   content: '';
                   position: absolute;
                   top: 0;
                   left: 0;
                   width: 100%;
                   height: 100%;
-                  background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="20" fill="rgba(255,255,255,0.05)"/></svg>');
-                  opacity: 0.3;
-                  animation: floatBg 20s linear infinite;
+                  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" preserveAspectRatio="none"><defs><linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgba(74,60,232,0.1)"/><stop offset="100%" style="stop-color:rgba(0,168,181,0.1)"/></linearGradient></defs><path fill="url(%23bgGradient)" d="M0 0h1440v810H0z"/><path fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2" d="M0 200c200 0 300 100 500 100s300-100 500-100 300 100 440 100v510H0z"/><path fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2" d="M0 400c150-50 250 50 400 50s250-100 400-100 250 100 400 100 190-50 240-50v410H0z"/></svg>');
+                  background-size: cover;
+                  background-position: center;
+                  z-index: -1;
             }
 
             @keyframes floatBg {
@@ -92,89 +201,165 @@
             }
 
             .hero h1 {
-                  font-size: 48px;
-                  font-weight: 700;
-                  margin-bottom: 25px;
+                  font-size: 52px;
+                  font-weight: 800;
+                  margin-bottom: 20px;
                   position: relative;
                   z-index: 1;
-                  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                  line-height: 1.3;
+                  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                  line-height: 1.2;
             }
 
             .hero p {
-                  font-size: 20px;
+                  font-size: 22px;
+                  font-weight: 400;
                   position: relative;
                   z-index: 1;
-                  opacity: 0.9;
-                  max-width: 800px;
-                  margin: 0 auto;
+                  opacity: 0.95;
+                  max-width: 700px;
+                  margin: 0 auto 30px;
+            }
+
+            .hero .cta-button {
+                  background: linear-gradient(135deg, #89b8f5 0%, #f8f9fd 100%);
+                  color: #6b48ff;
+                  padding: 18px 40px;
+                  border: none;
+                  border-radius: 50px;
+                  font-size: 18px;
+                  font-weight: 600;
+                  cursor: pointer;
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 10px;
+                  text-decoration: none;
+                  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+                  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+                  position: relative;
+                  z-index: 1;
+            }
+
+            .hero .cta-button:hover {
+                  transform: translateY(-3px);
+                  box-shadow: 0 15px 25px rgba(107, 72, 255, 0.3);
+                  background: linear-gradient(135deg, #f8f9fd 0%, #ffffff 100%);
             }
 
             .benefits {
                   display: grid;
-                  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                  gap: 30px;
-                  margin-bottom: 60px;
-            }
-
-            .benefit-card {
-                  background: #ffffff;
-                  padding: 30px;
-                  border-radius: 20px;
-                  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-                  display: flex;
-                  align-items: center;
+                  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
                   gap: 25px;
-                  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-                  border: 1px solid rgba(107, 72, 255, 0.1);
+                  margin-bottom: 60px;
+                  padding: 20px 0;
             }
 
-            .benefit-card:hover {
-                  transform: translateY(-8px);
-                  box-shadow: 0 20px 30px rgba(107, 72, 255, 0.1);
-                  border-color: rgba(107, 72, 255, 0.3);
-            }
-
-            .benefit-card i {
+            .benefits h2 {
+                  grid-column: 1 / -1;
+                  text-align: center;
                   font-size: 32px;
-                  color: #6b48ff;
+                  font-weight: 700;
+                  margin-bottom: 25px;
                   background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
                   -webkit-background-clip: text;
                   -webkit-text-fill-color: transparent;
             }
 
+            .benefit-card {
+                  background: #ffffff;
+                  padding: 25px;
+                  border-radius: 12px;
+                  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+                  display: flex;
+                  align-items: flex-start;
+                  gap: 15px;
+                  transition: transform 0.3s ease, box-shadow 0.3s ease;
+                  border: 1px solid rgba(107, 72, 255, 0.1);
+                  position: relative;
+                  overflow: hidden;
+            }
+
+            .benefit-card::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 4px;
+                  height: 100%;
+                  background: linear-gradient(180deg, #6b48ff 0%, #00ddeb 100%);
+                  opacity: 0;
+                  transition: opacity 0.3s ease;
+            }
+
+            .benefit-card:hover::before {
+                  opacity: 1;
+            }
+
+            .benefit-card:hover {
+                  transform: translateY(-5px);
+                  box-shadow: 0 12px 25px rgba(107, 72, 255, 0.15);
+            }
+
+            .benefit-card i {
+                  font-size: 28px;
+                  color: #6b48ff;
+                  background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  flex-shrink: 0;
+            }
+
             .benefit-card p {
-                  font-size: 17px;
+                  font-size: 16px;
                   color: #4a5568;
-                  line-height: 1.6;
+                  line-height: 1.5;
+                  font-weight: 400;
             }
 
             .offer {
-                  background: linear-gradient(135deg, #ffffff 0%, #f8f9fd 100%);
-                  padding: 50px;
-                  border-radius: 25px;
-                  box-shadow: 0 15px 30px rgba(107, 72, 255, 0.08);
+                  background: linear-gradient(135deg, #26A69A 0%, #0D47A1 100%);
+                  padding: 40px 20px;
+                  border-radius: 16px;
+                  box-shadow: 0 15px 35px rgba(13, 71, 161, 0.2);
                   text-align: center;
                   margin-bottom: 40px;
-                  border: 1px solid rgba(107, 72, 255, 0.1);
+                  position: relative;
+                  overflow: hidden;
+                  border: 2px solid rgba(38, 166, 154, 0.3);
+            }
+
+            .offer::before {
+                  content: '';
+                  position: absolute;
+                  top: -50%;
+                  left: -50%;
+                  width: 200%;
+                  height: 200%;
+                  background: radial-gradient(circle, rgba(107, 72, 255, 0.1) 0%, transparent 70%);
+                  animation: rotateBg 20s linear infinite;
+                  z-index: -1;
             }
 
             .offer h2 {
-                  background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+                  font-size: 40px;
+                  font-weight: 800;
+                  margin-bottom: 20px;
+                  background: linear-gradient(135deg, #e7e5ee 0%, #00ddeb 100%);
                   -webkit-background-clip: text;
                   -webkit-text-fill-color: transparent;
-                  font-size: 32px;
-                  font-weight: 700;
-                  margin-bottom: 20px;
+                  position: relative;
+                  z-index: 1;
             }
 
             .offer p {
-                  color: #4a5568;
                   font-size: 18px;
+                  color: #c3c9d3;
                   margin-bottom: 30px;
-                  max-width: 600px;
+                  max-width: 700px;
                   margin-left: auto;
                   margin-right: auto;
+                  line-height: 1.6;
+                  position: relative;
+                  z-index: 1;
             }
 
             .pricing {
@@ -183,24 +368,29 @@
                   gap: 25px;
                   margin-bottom: 40px;
                   flex-wrap: wrap;
+                  position: relative;
+                  z-index: 1;
             }
 
             .plan {
-                  background: rgba(107, 72, 255, 0.05);
-                  padding: 20px 30px;
+                  background: linear-gradient(135deg, #f8f9fd 0%, #ffffff 100%);
+                  padding: 25px 30px;
                   border-radius: 15px;
-                  border: 2px solid transparent;
+                  border: 2px solid rgba(107, 72, 255, 0.2);
                   display: flex;
+                  flex-direction: column;
                   align-items: center;
                   gap: 15px;
                   transition: all 0.3s ease;
-                  cursor: pointer;
+                  cursor: translateY(-5px);
+                  min-width: 200px;
+                  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             }
 
             .plan:hover {
                   border-color: #6b48ff;
-                  background: rgba(107, 72, 255, 0.1);
-                  transform: translateY(-3px);
+                  transform: translateY(-5px);
+                  box-shadow: 0 10px 20px rgba(107, 72, 255, 0.2);
             }
 
             .plan input[type="radio"] {
@@ -214,6 +404,7 @@
                   font-size: 18px;
                   font-weight: 600;
                   color: #2d3436;
+                  text-align: center;
                   transition: color 0.3s ease;
             }
 
@@ -222,11 +413,13 @@
             }
 
             form {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 20px;
-                  max-width: 600px;
-                  margin: 0 auto;
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 15px;
+                  max-width: 800px;
+                  margin: 0 auto 30px;
+                  position: relative;
+                  z-index: 1;
             }
 
             form input {
@@ -236,6 +429,7 @@
                   font-size: 16px;
                   transition: all 0.3s ease;
                   background: #ffffff;
+                  width: 100%;
             }
 
             form input:focus {
@@ -244,22 +438,59 @@
                   box-shadow: 0 0 0 4px rgba(107, 72, 255, 0.1);
             }
 
+            form button {
+                  grid-column: span 2;
+            }
+
             .cta-button {
-                  background: linear-gradient(135deg, #6b48ff 0%, #5339cc 100%);
+                  background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
                   color: white;
-                  padding: 18px;
+                  padding: 18px 40px;
                   border: none;
                   border-radius: 12px;
                   font-size: 18px;
                   font-weight: 600;
                   cursor: pointer;
                   transition: all 0.3s ease;
-                  box-shadow: 0 10px 20px rgba(107, 72, 255, 0.15);
+                  box-shadow: 0 10px 20px rgba(107, 72, 255, 0.2);
+                  text-decoration: none;
+                  display: inline-block;
             }
 
             .cta-button:hover {
                   transform: translateY(-3px);
-                  box-shadow: 0 15px 25px rgba(107, 72, 255, 0.2);
+                  box-shadow: 0 15px 25px rgba(107, 72, 255, 0.3);
+            }
+
+            .money {
+                  text-align: center;
+                  padding: 30px 25px;
+                  background: linear-gradient(135deg, #f8f9fd 0%, #ffffff 100%);
+                  border-radius: 15px;
+                  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+                  margin: 20px auto;
+                  max-width: 600px;
+                  position: relative;
+                  z-index: 1;
+                  border: 1px solid rgba(107, 72, 255, 0.1);
+            }
+
+            .money p {
+                  font-size: 16px;
+                  color: #4a5568;
+                  margin-bottom: 20px;
+                  line-height: 1.6;
+            }
+
+            .money .cta-button {
+                  background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+                  padding: 14px 30px;
+                  border-radius: 25px;
+            }
+
+            .money .cta-button:hover {
+                  transform: scale(1.05);
+                  box-shadow: 0 15px 25px rgba(39, 174, 96, 0.3);
             }
 
             .trust {
@@ -270,178 +501,10 @@
                   gap: 15px;
                   font-size: 14px;
                   color: #636e72;
-                  margin-top: 15px;
+                  margin-top: 20px;
                   padding: 15px;
                   background: rgba(107, 72, 255, 0.02);
                   border-radius: 10px;
-            }
-
-            .trust img {
-                  width: 120px;
-                  opacity: 0.8;
-                  transition: opacity 0.3s ease;
-            }
-
-            .trust img:hover {
-                  opacity: 1;
-            }
-
-            .faq {
-                  margin-top: 50px;
-                  padding: 40px;
-                  background: #fff;
-                  border-radius: 25px;
-                  box-shadow: 0 15px 30px rgba(107, 72, 255, 0.08);
-                  border: 1px solid rgba(107, 72, 255, 0.1);
-            }
-
-            .faq h3 {
-                  font-size: 28px;
-                  font-weight: 700;
-                  margin-bottom: 30px;
-                  color: #2d3436;
-                  background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-            }
-
-            .faq p {
-                  margin-bottom: 20px;
-                  color: #4a5568;
-                  font-size: 16px;
-                  line-height: 1.8;
-            }
-
-            .faq strong {
-                  color: #2d3436;
-                  font-size: 18px;
-                  display: block;
-                  margin-bottom: 10px;
-            }
-
-            /* header nav */
-            nav {
-                  background-color: var(--dark-blue);
-                  padding: 15px 0;
-                  position: fixed;
-                  width: 100%;
-                  top: 0;
-                  z-index: 1000;
-                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            }
-
-            nav .container {
-                  max-width: 1200px;
-                  margin: 0 auto;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  padding: 0 30px;
-            }
-
-            nav .logo {
-                  color: var(--white);
-                  font-size: 1.8rem;
-                  font-weight: 800;
-                  letter-spacing: 1px;
-            }
-
-            nav ul {
-                  list-style: none;
-                  display: flex;
-                  gap: 25px;
-            }
-
-            nav ul li a {
-                  color: var(--white);
-                  text-decoration: none;
-                  font-size: 1rem;
-                  position: relative;
-                  padding-bottom: 4px;
-                  transition: color 0.3s, border-bottom 0.3s;
-            }
-
-            nav ul li a::after {
-                  content: '';
-                  display: block;
-                  width: 0%;
-                  height: 2px;
-                  background-color: var(--lime-green);
-                  transition: width 0.3s;
-                  position: absolute;
-                  bottom: 0;
-                  left: 0;
-            }
-
-            nav ul li a:hover {
-                  color: var(--lime-green);
-            }
-
-            nav ul li a:hover::after {
-                  width: 100%;
-            }
-
-            .phone a {
-                  background-color: var(--lime-green);
-                  color: var(--dark-blue);
-                  padding: 8px 15px;
-                  border-radius: 20px;
-                  font-size: 0.95rem;
-                  text-decoration: none;
-                  transition: background-color 0.3s, color 0.3s;
-            }
-
-            .phone a:hover {
-                  background-color: var(--white);
-                  color: var(--dark-blue);
-            }
-      </style>
-
-
-      <!-- money trust -->
-      <style>
-            .money {
-                  text-align: center;
-                  padding: 40px 20px;
-                  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-                  border-radius: 15px;
-                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                  margin: 20px auto;
-                  max-width: 600px;
-            }
-
-            .money p {
-                  font-size: 16px;
-                  color: #2d3436;
-                  margin-bottom: 20px;
-                  line-height: 1.6;
-            }
-
-            .money .cta-button {
-                  background: #27ae60;
-                  color: white;
-                  padding: 12px 25px;
-                  border: none;
-                  border-radius: 25px;
-                  font-size: 18px;
-                  font-weight: 600;
-                  cursor: pointer;
-                  transition: transform 0.3s ease, background 0.3s ease;
-                  text-decoration: none;
-                  display: inline-block;
-            }
-
-            .money .cta-button:hover {
-                  transform: scale(1.05);
-                  background: #219653;
-            }
-
-            .trust {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  gap: 15px;
-                  margin-top: 20px;
             }
 
             .trust img {
@@ -454,143 +517,330 @@
                   transform: scale(1.1);
             }
 
-            .money-back-img {
-                  width: 150px;
-                  height: auto;
-                  margin: 0 auto 20px;
+            .faq {
+                  margin-top: 50px;
+                  padding: 40px;
+                  background: #ffffff;
+                  border-radius: 20px;
+                  box-shadow: 0 15px 30px rgba(107, 72, 255, 0.1);
+                  border: 1px solid rgba(107, 72, 255, 0.15);
+            }
+
+            .faq h3 {
+                  font-size: 32px;
+                  font-weight: 700;
+                  margin-bottom: 30px;
+                  text-align: center;
+                  background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+            }
+
+            .faq-item {
+                  margin-bottom: 15px;
+                  border-bottom: 1px solid rgba(107, 72, 255, 0.1);
+            }
+
+            .faq-question {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding: 20px;
+                  background: #f8f9fd;
+                  border-radius: 12px;
+                  cursor: pointer;
+                  transition: background 0.3s ease, transform 0.3s ease;
+            }
+
+            .faq-question:hover {
+                  background: rgba(107, 72, 255, 0.05);
+                  transform: translateY(-2px);
+            }
+
+            .faq-question strong {
+                  font-size: 18px;
+                  font-weight: 600;
+                  color: #2d3436;
+            }
+
+            .faq-question i {
+                  font-size: 18px;
+                  color: #6b48ff;
+                  transition: transform 0.3s ease;
+            }
+
+            .faq-question.active i {
+                  transform: rotate(180deg);
+            }
+
+            .faq-answer {
+                  max-height: 0;
+                  overflow: hidden;
+                  transition: max-height 0.3s ease, padding 0.3s ease;
+                  padding: 0 20px;
+            }
+
+            .faq-answer.active {
+                  max-height: 200px;
+                  padding: 20px;
+            }
+
+            .faq-answer p {
+                  font-size: 16px;
+                  color: #4a5568;
+                  line-height: 1.6;
+            }
+
+            footer {
+                  background: linear-gradient(135deg, #2d3436 0%, #1a202c 100%);
+                  color: #ffffff;
+                  padding: 40px 20px;
+                  margin-top: 50px;
+                  border-top: 1px solid rgba(107, 72, 255, 0.2);
+            }
+
+            .footer-container {
+                  max-width: 1300px;
+                  margin: 0 auto;
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: space-between;
+                  gap: 20px;
+            }
+
+            .footer-logo {
+                  font-size: 24px;
+                  font-weight: 700;
+                  background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  margin-bottom: 15px;
+            }
+
+            .footer-links ul {
+                  list-style: none;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+            }
+
+            .footer-links ul li a {
+                  color: #d1d5db;
+                  text-decoration: none;
+                  font-size: 14px;
+                  transition: color 0.3s ease;
+            }
+
+            .footer-links ul li a:hover {
+                  color: #00ddeb;
+            }
+
+            .footer-social {
+                  display: flex;
+                  gap: 15px;
+            }
+
+            .footer-social a {
+                  color: #d1d5db;
+                  font-size: 20px;
+                  transition: color 0.3s ease, transform 0.3s ease;
+            }
+
+            .footer-social a:hover {
+                  color: #00ddeb;
+                  transform: translateY(-2px);
+            }
+
+            .footer-bottom {
+                  text-align: center;
+                  margin-top: 20px;
+                  padding-top: 20px;
+                  border-top: 1px solid rgba(255, 255, 255, 0.1);
+                  font-size: 14px;
+                  color: #a0aec0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
             }
       </style>
 </head>
 
 <body>
-
-      <nav>
-            <div class="container">
-                  <div class="logo">YOUR LOGO</div>
+      <header>
+            <div class="logo">TRC</div>
+            <nav>
                   <ul>
-                        <li><a href="#">Demos</a></li>
+                        <li><a href="#">Home</a></li>
                         <li><a href="#">Pages</a></li>
                         <li><a href="#">Services</a></li>
                         <li><a href="#">Case Studies</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Contact</a></li>
                   </ul>
-                  <div class="phone">
-                        <a href="tel:+1234456123">📞 +1 (234) 456-123</a>
-                  </div>
+            </nav>
+            <div class="phone">
+                  <a href="tel:+1234456">📞 (123) 456-7890</a>
             </div>
-      </nav>
+      </header>
 
       <div class="container">
-            <header>
-                  <div class="logo">TRC</div>
-            </header>
-
             <section class="hero">
                   <h1>Join the Exclusive Columbia Community Reputation Program</h1>
-                  <p>Unlock premium benefits and grow your business today!</p>
+                  <p>Unlock premium benefits to boost your business today!</p>
+                  <a href="#" class="cta-button">Get Started Now</a>
             </section>
 
             <section class="benefits">
+                  <h2>Why Choose Our Program?</h2>
                   <div class="benefit-card">
-                        <i>📅</i>
-                        <p>Dedicated Review Survey Website with Unlimited Visits</p>
+                        <i class="fas fa-check-circle"></i>
+                        <p>Premium Review Survey Platform with Unlimited Access</p>
                   </div>
                   <div class="benefit-card">
-                        <i>🔄</i>
-                        <p>Change Your Review Website Anytime</p>
+                        <i class="fas fa-cog"></i>
+                        <p>Update Your Review Site Whenever You Want</p>
                   </div>
                   <div class="benefit-card">
-                        <i>🖨️</i>
-                        <p>Endless Possibilities (Use at POS, with Receipts, etc.)</p>
+                        <i class="fas fa-print"></i>
+                        <p>Versatile Integration Options (POS, Receipts, etc.)</p>
                   </div>
                   <div class="benefit-card">
-                        <i>📱</i>
-                        <p>Shortlink to Request Reviews via Text or Email</p>
+                        <i class="fas fa-mobile-alt"></i>
+                        <p>Shortlink for Easy Review Requests via Text or Email</p>
                   </div>
                   <div class="benefit-card">
-                        <i>📊</i>
-                        <p>Gain Valuable Insight from Customer Feedback</p>
+                        <i class="fas fa-chart-line"></i>
+                        <p>Actionable Insights from Customer Feedback</p>
                   </div>
                   <div class="benefit-card">
-                        <i>🤝</i>
-                        <p>1-on-1 Consulting to Optimize Your Reviews</p>
+                        <i class="fas fa-handshake"></i>
+                        <p>One-on-One Consulting to Optimize Reviews</p>
                   </div>
                   <div class="benefit-card">
-                        <i>👤</i>
-                        <p>Dedicated Program Manager with Concierge Service</p>
+                        <i class="fas fa-user-tie"></i>
+                        <p>Dedicated Program Manager with VIP Support</p>
                   </div>
                   <div class="benefit-card">
-                        <i>📞</i>
-                        <p>24/7 Phone & Email Support</p>
+                        <i class="fas fa-phone-alt"></i>
+                        <p>24/7 Phone & Email Assistance</p>
                   </div>
                   <div class="benefit-card">
-                        <i>✔️</i>
-                        <p>100% Satisfaction Money Back Guarantee</p>
+                        <i class="fas fa-shield-alt"></i>
+                        <p>100% Satisfaction Guarantee</p>
                   </div>
                   <div class="benefit-card">
-                        <i>❌</i>
-                        <p>Cancel Any Time, Keep All Reviews You Get</p>
+                        <i class="fas fa-times-circle"></i>
+                        <p>Cancel Anytime, Keep All Reviews</p>
                   </div>
             </section>
 
             <section class="offer">
-                  <h2>Offer Available Today Only</h2>
-                  <p>While Your Pizzeria is Our First Choice, We May Spot It to Another Pizzeria in Your Area.</p>
-
+                  <h2>Exclusive Deal – Don’t Wait!</h2>
+                  <p>Lock in your exclusive pizzeria spot in our Reputation Program before it’s offered elsewhere!</p>
                   <div class="pricing">
                         <label class="plan">
                               <input type="radio" name="plan" checked>
-                              <span>Monthly Plan - $497/month (Save 80% Off!)</span>
+                              <span>Monthly Plan - $32/month (<strong>Save 80%</strong>)</span>
                         </label>
                         <label class="plan">
                               <input type="radio" name="plan">
-                              <span>Annual Plan - $5967/year (Save 82% Off!)</span>
+                              <span>Annual Plan - $5967/year (<strong>Save 85%</strong>)</span>
                         </label>
                   </div>
-
                   <form>
-                        <input type="text" placeholder="Name" required>
+                        <input type="text" placeholder="Full Name" required>
                         <input type="text" placeholder="Business Name" required>
                         <input type="text" placeholder="Business Address" required>
-                        <input type="email" placeholder="Email" required>
-                        <input type="tel" placeholder="Phone" required>
-                        <input type="text" placeholder="Credit Card" required>
-                        <button type="button" class="cta-button">Try Risk-Free</button>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="text" placeholder="Credit Card Details" required>
+                        <button type="submit" class="cta-button">Join Risk-Free!</button>
                   </form>
                   <section class="money">
-                        <p>Immediately after placing your order, you will receive a confirmation email with your
-                              receipt. Lock
-                              in Your Spot As The Only Pizzeria In Your Area Using The Reputation Program to Get More
-                              Reviews.
-                        </p>
-                        <a href="#" class="cta-button">Try Risk-Free</a>
+                        <p>Your order confirmation and access details will be emailed instantly upon signup!</p>
+                        <a href="#" class="cta-button">Claim Your Exclusive Spot!</a>
                         <div class="trust">
                               <img src="https://logowik.com/content/uploads/images/trusted-site-certified-secure7733.jpg"
                                     alt="TrustedSite Certified Secure">
                         </div>
-                        <p>100% Money Back Guarantee. Cancel Anytime.</p>
+                        <p>100% Satisfaction Guarantee – Cancel Anytime!</p>
                   </section>
             </section>
 
             <section class="faq">
-                  <h3>FAQ</h3>
-                  <p><strong>What Happens After I Place My Order?</strong></p>
-                  <p>After placing your order, you will immediately receive a confirmation email with your receipt and
-                        we will begin processing your welcome email with all the information about how to access
-                        everything that's included with your membership.</p>
-                  <p><strong>How Does the 100% Money Back Guarantee Work?</strong></p>
-                  <p>If for any reason you are not completely satisfied with your results, simply email us within the
-                        first 30 days and we'll refund your money, no questions asked!</p>
+                  <h3>Frequently Asked Questions</h3>
+                  <div class="faq-item">
+                        <div class="faq-question">
+                              <strong>What Happens After I Place My Order?</strong>
+                              <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                              <p>You’ll receive a confirmation email with your receipt and a welcome email with all the
+                                    information to access your membership benefits.</p>
+                        </div>
+                  </div>
+                  <div class="faq-item">
+                        <div class="faq-question">
+                              <strong>How Does the Guarantee Work?</strong>
+                              <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                              <p>Not satisfied? Email us within 30 days for a full refund, no questions asked!</p>
+                        </div>
+                  </div>
             </section>
       </div>
 
+      <footer>
+            <div class="footer-bottom">
+                  <div class="footer-logo">TRC</div>
+                  <p>&copy; 2025 TRC. All rights reserved.</p>
+                  <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+            </div>
+      </footer>
 
-      <!-- money -->
       <script>
-            document.querySelector('.cta-button').addEventListener('click', function (e) {
-                  e.preventDefault();
-                  alert('Thank you for trying Risk-Free! A confirmation email will be sent.');
+            document.querySelectorAll('.cta-button').forEach(button => {
+                  button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        alert('Thank you for joining! Your confirmation email is on its way.');
+                  });
+            });
+
+            window.addEventListener('scroll', function () {
+                  const header = document.querySelector('header');
+                  if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                  } else {
+                        header.classList.remove('scrolled');
+                  }
+            });
+
+            document.querySelectorAll('.faq-question').forEach(question => {
+                  question.addEventListener('click', () => {
+                        const answer = question.nextElementSibling;
+                        const isActive = answer.classList.contains('active');
+                        document.querySelectorAll('.faq-answer').forEach(ans => {
+                              ans.classList.remove('active');
+                              ans.style.maxHeight = '0';
+                              ans.style.padding = '0 20px';
+                        });
+                        document.querySelectorAll('.faq-question').forEach(q => {
+                              q.classList.remove('active');
+                              q.querySelector('i').style.transform = 'rotate(0deg)';
+                        });
+                        if (!isActive) {
+                              answer.classList.add('active');
+                              question.classList.add('active');
+                              answer.style.maxHeight = answer.scrollHeight + 'px';
+                              question.querySelector('i').style.transform = 'rotate(180deg)';
+                        }
+                  });
             });
       </script>
 </body>
