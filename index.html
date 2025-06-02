@@ -145,10 +145,41 @@
 
             header .mobile_bars {
                   display: none;
+                  position: absolute;
+                  top: 18px;
+                  right: 20px;
+                  color: #000;
+                  cursor: pointer;
+                  z-index: 1001;
+                  font-size: 24px;
+            }
 
-                  i {
-                        opacity: 0;
-                  }
+            header .mobile_bars i {
+                  transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            header .mobile_bars .fa-bars {
+                  opacity: 1;
+                  transform: scale(1);
+            }
+
+            header .mobile_bars .fa-xmark {
+                  opacity: 0;
+                  transform: scale(0.5);
+                  position: absolute;
+                  top: 8px;
+                  right: 4px;
+            }
+
+            header .mobile_bars.active .fa-bars {
+                  opacity: 0;
+                  transform: scale(0.5);
+            }
+
+            header .mobile_bars.active .fa-xmark {
+                  opacity: 1;
+                  transform: scale(1);
+
             }
 
             .hero {
@@ -580,8 +611,6 @@
                   line-height: 1.6;
             }
 
-
-            /* footer */
             footer {
                   background: linear-gradient(135deg, #2d3436 0%, #1a202c 100%);
                   color: #ffffff;
@@ -654,9 +683,6 @@
                   justify-content: space-between;
             }
 
-
-
-            /* Responsive Styles */
             @media (max-width: 1024px) {
                   .container {
                         max-width: 960px;
@@ -712,18 +738,18 @@
                         flex-direction: column;
                         padding: 20px;
                         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                        /* transform: translateY(-100%); */
                         z-index: 999;
                         margin-top: 60px;
-                        display: none;
-                        nav ul li a{
-                              color: #ffff;
-                        }
+                        transform: translateY(-100%);
+                        opacity: 0;
+                        transition: transform 0.3s ease, opacity 0.3s ease;
+                        pointer-events: none;
                   }
 
                   header .nav-container.active {
-                        /* transform: translateY(0); */
-                        display: block;
+                        transform: translateY(0);
+                        opacity: 1;
+                        pointer-events: auto;
                   }
 
                   header nav ul {
@@ -737,7 +763,6 @@
                         display: block;
                         margin: 0;
                         padding: 0;
-
                   }
 
                   header nav ul li a {
@@ -745,6 +770,7 @@
                         font-size: 18px;
                         margin: 0;
                         padding: 0;
+                        color: #ffff;
                   }
 
                   header .phone {
@@ -758,24 +784,9 @@
                         font-size: 16px;
                   }
 
-                  /* bars icon */
-
                   header .mobile_bars {
-                        position: absolute;
-                        top: 18px;
-                        right: 20px;
-                        color: #000;
-                        cursor: pointer;
-                        z-index: 1001;
                         display: block;
-                        font-size: 24px;
-
-                        i {
-                              opacity: 1;
-                        }
-
                   }
-
 
                   .hero {
                         padding: 60px 20px;
@@ -908,26 +919,23 @@
 
                   footer {
                         padding: 30px 15px;
-
-                        .footer-container {
-                              flex-direction: column;
-                              margin-left: 20px;
-
-                              .logo {
-                                    margin-left: 0;
-                              }
-
-                              .footer-links ul {
-                                    flex-direction: row;
-                                    flex-wrap: wrap;
-                                    justify-content: center;
-                              }
-                        }
                   }
 
+                  footer .footer-container {
+                        flex-direction: column;
+                        margin-left: 20px;
+                  }
+
+                  footer .footer-container .logo {
+                        margin-left: 0;
+                  }
+
+                  footer .footer-links ul {
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                  }
             }
-
-
 
             @media (max-width: 480px) {
                   header .logo {
@@ -1027,10 +1035,6 @@
                         font-size: 14px;
                   }
 
-                  footer {
-                        padding: 30px 15px;
-                  }
-
                   .footer-logo {
                         font-size: 20px;
                   }
@@ -1064,19 +1068,17 @@
                         <a href="tel:+1234456">📞 (123) 456-7890</a>
                   </div>
             </div>
-            <div class="mobile_bars"
-                  onclick="mobile_bars.classList.toggle('active'); navContainer.classList.toggle('active');">
+            <div class="mobile_bars">
                   <i class="fa-solid fa-bars"></i>
+                  <i class="fa-solid fa-xmark"></i>
             </div>
       </header>
-
       <div class="container">
             <section class="hero">
                   <h1>Join the Exclusive Columbia Community Reputation Program</h1>
                   <p>Unlock premium benefits to boost your business today!</p>
                   <a href="#" class="cta-button">Get Started Now</a>
             </section>
-
             <section class="benefits">
                   <h2>Why Choose Our Program?</h2>
                   <div class="benefit-card">
@@ -1120,7 +1122,6 @@
                         <p>Cancel Anytime, Keep All Reviews</p>
                   </div>
             </section>
-
             <section class="offer">
                   <h2>Exclusive Deal – Don’t Wait!</h2>
                   <p>Lock in your exclusive pizzeria spot in our Reputation Program before it’s offered elsewhere!</p>
@@ -1153,7 +1154,6 @@
                         <p>100% Satisfaction Guarantee – Cancel Anytime!</p>
                   </section>
             </section>
-
             <section class="faq">
                   <h3>Frequently Asked Questions</h3>
                   <div class="faq-item">
@@ -1177,11 +1177,10 @@
                   </div>
             </section>
       </div>
-
-         <footer>
+      <footer>
             <div class="footer-bottom">
                   <div class="footer-logo">TRC</div>
-                  <p>&copy; 2025 TRC. All rights reserved.</p>
+                  <p>© 2025 TRC. All rights reserved.</p>
                   <div class="footer-social">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1190,17 +1189,19 @@
                   </div>
             </div>
       </footer>
-
       <script>
-            // Toggle hamburger menu
-            const mobile_bars = document.querySelector('.mobile_bars');
+            // Toggle hamburger menu and icon
+            const mobileBars = document.querySelector('.mobile_bars');
             const navContainer = document.querySelector('.nav-container');
-
-            window.addEventListener('scroll', function(){
-                  mobile_bars.classList.remove('active');
+            mobileBars.addEventListener('click', () => {
+                  mobileBars.classList.toggle('active');
+                  navContainer.classList.toggle('active');
+            });
+            // Close menu on scroll
+            window.addEventListener('scroll', () => {
+                  mobileBars.classList.remove('active');
                   navContainer.classList.remove('active');
-            })
-
+            });
             // CTA button alert
             document.querySelectorAll('.cta-button').forEach(button => {
                   button.addEventListener('click', function (e) {
@@ -1208,9 +1209,6 @@
                         alert('Thank you for joining! Your confirmation email is on its way.');
                   });
             });
-
-           
-
             // FAQ accordion
             document.querySelectorAll('.faq-question').forEach(question => {
                   question.addEventListener('click', () => {
